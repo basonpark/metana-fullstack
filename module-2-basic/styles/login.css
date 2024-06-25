@@ -19,15 +19,8 @@ body {
   margin: 0;
 }
 
-h3 .inputSlide {
-  display: block;
-  font-size: 1.17em;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
-  unicode-bidi: isolate;
+h3 {
+  text-align: center;
 }
 
 nav .ul {
@@ -49,7 +42,7 @@ p {
 
 .formContainer {
   width: 500px;
-  height: 700px;
+  height: 660px;
   margin: auto;
   border-radius: 5px;
   border: 1px solid #ced4da;
@@ -58,7 +51,7 @@ p {
   background-color: #373b69;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   max-width: 1200px;
@@ -98,16 +91,10 @@ p {
   overflow: hidden;
 }
 
-.fa-solid .fa-user {
-  margin: auto;
-  z-index: 3;
-}
-
 .input-slide-container {
   width: 100%;
   flex: 1;
   display: flex;
-  overflow: hidden;
 }
 
 .input-slide {
@@ -243,4 +230,10 @@ hr {
   position: absolute;
   z-index: 0;
   border: none;
+}
+
+.steps-container .steps {
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
 }

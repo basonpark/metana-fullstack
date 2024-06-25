@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <form class="formContainer" id="registraionForm">
+        <nav>
+          <ul class="ul">
+            <li class="back">
+              <a href="index.html">👈🏽 go back</a>
+            </li>
+          </ul>
+        </nav>
+        
+        <hr>
+
+        <h2 class="heading">Sign Up</h2>
+  
+        <div class="steps-container"> /* Container for the steps */
+          <hr></hr>
+          <hr class='active'></hr>
+          <div class="steps" id="step1"></div>
+          <div class="steps" id="step2"></div>
+          <div class="steps" id="step3"></div>
+          <div class="steps" id="step4"></div>
+        </div>
+  
+        <div class='input-slide-container'>
+          <scroller>
+            <div class="input-slide" id="slide1">
+              <h3 class="input-slide" >User Name</h3>
+              <p><i>Username is your online identity</i></p>
+              <ul class="rules">
+                <li>" Your username should only contain letters, 
+                  numbers, underscores, or hyphens. "
+                </li>
+                <li>
+                  "No spaces or special characters allowed."
+                </li>
+                <li>
+                  " Your username should not be offensice or contain 
+                  profanity. "
+                </li>
+              </ul>
+                <input class="" type="text" placeholder="Type your username here"
+                  name="username" class="username"></input>
+                <span class="error" id="usernameError"></span>
+              <div class="full-name">
+                <input type="text" placeholder="First Name" name="firstName"></input>
+                <span class="error" id="firstnameError"></span>
+                <input type="text" placeholder="Last Name" name="lastName" class="lastname"></input>
+                <span class="error" id="firstnameError"></span>
+              </div>
+              <div class="buttons-form">
+                <button class="button-nex" onclick="NextSlide(1)">Next</button>
+              </div>
+            </div>
+  
+            <div class="input-slide user-detail" id="slide2">
+              <h3 class="inputSlide">Email</h3>
+              <p><i>Email is the gateway to your digital life</i></p>
+              <ul class="rules">
+                <li>" Please enter a valid email in the format
+                    "example@example.com". "
+                </li>
+              <li>
+                  " We value your privacy and will never use your
+                  email for any unauthorized purposes. "
+                </li>
+                <li>
+                  " Please don't use an email that belongs to someone
+                  else. "
+                </li>
+                <li>
+                  " Please don't use an email that includes personal
+                  information. "
+                </li>
+              </ul>
+              <input type="email" placeholder="Email"
+                name="email" class="email"></input>
+
+              <span class="error" id="emailError"></span>
+              <div class="buttons-form">
+                <button class="button-nex" onclick="GoBack">Back</button>
+                <button class="button-nex" onclick="NextSlide(2)">Next</button>
+              </div>
+            </div>
+  
+
+            <div class="input-slide password-slide" id="slide3">
+              <h3 class="inputSlide">Password</h3>
+              <p><i>Secure your account with a strong password</i></p>
+              <ul class="rules">
+                <li>" Include a mix of uppercase and lowercase letters,
+                    numbers, and special characters. "
+                </li>
+                <li>
+                  "Avoid using common or easily guessable passwords."
+                </li>
+                <li>
+                  "Do not use personal information."
+                </li>
+              </ul>
+              <input type="password" placeholder="Password"
+                name="password" class="password"></input>
+              <span class="error" id="passwordError"></span>
+                <input type="password" placeholder="Confirm your password"
+                name="confirmPassword" class="confirm-password"></input>
+              <span class="error" id="confirmPasswordError"></span>
+              <div class="buttons-form">
+                <button class="button-nex" onclick="GoBack">Back</button>
+                <button class="button-nex" onclick="NextSlide(3)">Next</button>
+              </div>
+            </div>
+  
+            <div class="input-slide finish-slide" id="slide4">
+              <h3 class="inputSlide">Congratulations!</h3>
+              <p><i>You have completed all the steps required for registration.</i></p>
+              <ul class="rules">
+                <li>" Before submitting your information, please take a
+                    moment to ensure that all the details provided are 
+                    correct. "
+                </li>
+                <li>
+                  "We take the privacy and security of our users
+                  very seriously, and it is important that all the 
+                  information provided is accurate and up-to-date. "
+                </li>
+                <li>
+                  " Once you have confirmed that everything is in 
+                  order, simply click the 'Submit' button. "
+                </li>
+              </ul>
+              <div class="buttons-form">
+                <button class="button-nex" onclick="GoBack()">Back</button>
+                <button class="button-nex" type="submit">Submit</button>
+              </div>
+            </div>
+          </scroller>
+        </div>
+  
+        <div class='success-message' id="success-message">Form submitted successfully!</div>
+      
+        <button class='GoBack' onClick="GoBack()">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+  
+      </form>
+</body>
+</html>

@@ -1,6 +1,6 @@
 :root {
   font-family: Exo;
-  /* //background-color: #22254b; */
+  //background-color: #22254b;
   --primary-color: #22254b;
   --secondary-color: #373b69;
 }
@@ -46,7 +46,7 @@ p {
   margin: auto;
   border-radius: 5px;
   border: 1px solid #ced4da;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: white;
   background-color: #373b69;
   display: flex;
@@ -72,7 +72,6 @@ p {
 
 .active {
   background: #80ed99;
-  display: block;
   width: 0%;
 }
 
@@ -100,13 +99,9 @@ p {
 
 .input-slide {
   width: 478px;
-  display: none;
+  display: flex;
   flex-direction: column;
   flex-shrink: 0;
-}
-
-.flex-display {
-  display: flex;
 }
 
 .input-slide p {
@@ -178,21 +173,6 @@ i {
   background-color: #52b788;
 }
 
-.button-back {
-  padding: 8px 20px;
-  border-radius: 20px;
-  color: white;
-  font-weight: 800;
-  outline: none;
-  border: none;
-  margin: auto;
-  margin-right: 10px;
-  font-family: Exo;
-  font-size: 1em;
-  cursor: pointer;
-  background-color: #52b788;
-}
-
 .user-detail > .email {
   width: calc(100% - 20px);
 }
@@ -202,7 +182,7 @@ i {
   margin: 10px;
 }
 
-input[type='password' i] {
+input[type="password" i] {
   -webkit-text-security: disc !important;
   padding-block: 1px;
   padding-inline: 2px;

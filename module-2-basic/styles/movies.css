@@ -1,0 +1,32 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  grid-template-rows: auto;
+}
+
+.card {
+  background-color: var(--secondary-color);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  max-height: 400px;
+  padding: 20px;
+  color: white;
+}
+
+.cardImage {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+.card-info {
+  padding: 0.5rem 0;
+}
+
+.card-info h3 {
+  margin: 0;
+  font-size: 1.2em;
+}

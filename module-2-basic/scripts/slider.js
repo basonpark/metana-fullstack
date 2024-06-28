@@ -1,21 +1,36 @@
-function displayFeaturedMovies(movies) {
-    const slider = document.getElementById('featured-slider');
-    slider.innerHTML = '';
-    movies.forEach(movie => {
-        const slide = document.createElement('div');
-        slide.className = 'slide';
-        slide.textContent = movie.title; 
-        slider.appendChild(slide);
-    });
-    initializeSlider();
-}
+document.addEventListener('DOMContentLoaded', (event) => {
+    const sliderInner = document.querySelector('.slider-inner');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const items = document.querySelectorAll('.slider .item');
+    
+    let currentIndex = 0;
+    const totalItems = items.length;
+    
+    function updateSliderPosition() {
+        const itemWidth = items[0].offsetWidth;
+        sliderInner.style.transform = 'translateX(' + (-itemWidth * currentIndex) + 'px)';
+    }
 
-function initializeSlider() {
-    let index = 0;
-    const slides = document.querySelectorAll('.slide');
-    setInterval(() => {
-        slides.forEach(slide => slide.style.display = 'none');
-        index = (index + 1) % slides.length;
-        slides[index].style.display = 'block';
-    }, 3000);
-}
+    function showNextItem() {
+        if (currentIndex < totalItems - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; 
+        }
+        updateSliderPosition();
+    }
+
+    function showPrevItem() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = totalItems - 1;
+        }
+        updateSliderPosition();
+    }
+
+    // Event Listeners for buttons
+    nextButton.addEventListener('click', showNextItem);
+    prevButton.addEventListener('click', showPrevItem);
+});

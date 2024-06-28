@@ -57,7 +57,7 @@ nav {
 
 .slider-inner {
   width: 100%;
-  //display: flex;
+  display: flex;
   //transition: transform 0.s ease-in-out;
   height: 500px;
 }

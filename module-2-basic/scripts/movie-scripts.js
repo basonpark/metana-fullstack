@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const size = 'w500';
         moviePoster.src = `${baseURL}${size}${movie.poster_path}`;
 
-      moviePoster.alt = `${movie.title} Poster`;
+      moviePoster.alt = `${movie.title} Poster`;localStorage
       moviePoster.classList.add('cardImage');
       
       const movieInfo = document.createElement('div');

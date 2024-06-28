@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         updateSliderPosition();
     }
 
-
+    // Event Listeners for buttons
     nextButton.addEventListener('click', showNextItem);
     prevButton.addEventListener('click', showPrevItem);
 });

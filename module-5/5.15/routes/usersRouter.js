@@ -2,6 +2,15 @@ import express from 'express';
 const usersRouter = express.Router();
 import User from '../models/User.js';
 import mongoose from "mongoose";
+import {
+    users,
+    getUsers,
+    getUserById,
+    addUser,
+    deleteUser,
+    updateUser,
+    getUserByEmail,
+} from '../data/user.js';
 
 //get all users
 usersRouter.get('/', async (req, res) => {

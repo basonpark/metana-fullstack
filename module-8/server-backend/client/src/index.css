@@ -76,3 +76,43 @@ footer a:hover {
   display: flex;
   justify-content: space-between;
 }
+
+/* Styles for the blogs index view */
+
+#all-blogs {
+  margin-top: 3rem;
+}
+.blogs-list {
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+}
+
+#all-blogs h3 {
+  margin: 0;
+}
+
+.blog-item {
+  margin: 1rem auto;
+}
+.blog-item span {
+  margin: 0;
+  padding: 0;
+  margin-right: 2rem;
+}
+
+/* Styles for the Contact page */
+
+.contact-methods {
+  padding: 2rem;
+}
+.contact-method-item a,
+.contact-method-item a:visited,
+.contact-method-item a:active,
+.contact-method-item a:hover {
+  color: var(--link-color);
+}
+
+.margin-top-30 {
+  margin-top: 5rem;
+}

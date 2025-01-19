@@ -1,20 +1,10 @@
 import { useState, useEffect } from 'react';
-import { login, logout } from '../controllers/auth';
+import { useAuth } from '../context/AuthProvider';
 
 // The login view
 function LoginPage() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const logoutAction = async () => {
-    try {
-      await logout();
-      console.log('=== debug: logout successful');
-      setIsLoggedIn(false);
-    } catch (error) {
-      console.error('=== error logging out', error);
-    }
-  };
+  const { user, logout, isLoggedIn } = useAuth();
 
   return (
     <div id="wrapper" className="grid h-screen place-items-center">
@@ -26,24 +16,25 @@ function LoginPage() {
       </div>
       {isLoggedIn ? (
         <div className="my-20">
-          <LogoutButton onClick={logoutAction} />
+          <LogoutButton onClick={logout} />
         </div>
       ) : (
-        <LoginForm setIsLoggedIn={setIsLoggedIn} />
+        <LoginForm/>
       )}
     </div>
   );
   }
 
-  const LogoutButton = ({onClick}) => {
+// Export the LogoutButton component
+export const LogoutButton = ({onClick}) => (
     <button
-    className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 my-2 mx-2 rounded focus:outline-none focus:shadow-outline"
-    type="button"
-    onClick={onClick}
+        className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 my-2 mx-2 rounded focus:outline-none focus:shadow-outline"
+        type="button"
+        onClick={onClick}
     >
-      Logout
+        Log out
     </button>
-  }
+);
 
 //the login form
   function LoginForm({setIsLoggedIn}) {
@@ -52,6 +43,7 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const [canSubmit, setCanSubmit] = useState(false);
     const forgotPasswordUrl = '#';
+    const { login } = useAuth();
 
     //handler for login form
     const handleSubmit = async (e) => {

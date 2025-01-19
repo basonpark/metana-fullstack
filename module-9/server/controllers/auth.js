@@ -1,18 +1,66 @@
 //handler for login/logout in authrouter
 import validator from 'validator';
 import User from '../models/User.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import { JWT_SECRET } from '../config.js';
 
-//validate user credentials by plaintext password
-//returns user on success
+//validate user credentials by plaintext password  
+//returns use and signed JWT token on success (without password attribute)
 async function authenticateUser({email, password}) {
     const user = await User.findOne({email:email});
-    if (user && user.password === password) {
-        return user;
+    if (!user) {
+        console.log("=== user not found ", email);
+        return;
+    }
+    const passwordValid = await bcrypt.compare(password, user.password);
+    if (!passwordValid) {
+        console.log("=== password not valid ", email);
+        return;
+    }
+    //generate JWT token. we don't include password in the token
+    const token = jwt.sign(
+        {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+        },
+        JWT_SECRET,
+        {
+            expiresIn: '4h',
+        }
+    );
+    
+    return {
+        token,
+        user: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+        }
+    };
+}
+
+//test if there's a token with valid user
+export function isAuthenticated(req) {
+    try {
+        const token = req.headers.authorization?.split(' ')[1];
+        console.log('=== debug: auth token received ', token);
+        if (!token) {
+            return false;
+        }
+        return jwt.verify(token, JWT_SECRET);
+    } catch (error) {
+        console.error('=== error verifying auth token', error);
     }
 }
 
+
 //log in the user by email and password. set cookie with user details on success
-export async function login({res, email, password}) {
+export async function login({req, res}) {
+    const {email, password} = req.body;
     if (!email || !password) {
         throw new Error('email and password are required');
     }
@@ -23,17 +71,13 @@ export async function login({res, email, password}) {
         throw new Error('validation failed');
     }
     //authenticate user by password
-    const user = await authenticateUser({email, password});
-    if (!user) {
-        throw new Error('invalid username or password');
+    const result =  await authenticateUser({email, password});
+    if (!result) {
+        throw new Error('username or password invalid');
     }
-    res.cookie('user', JSON.stringify(user));
-    console.log('=== login successful');
-    return user;
-}
-
-//log out user
-export async function logout(res) {
-    res.clearCookie('user');
-    console.log('=== logout successful');
+    const { user, token } = result;
+    return {
+        user,
+        token,
+    };
 }

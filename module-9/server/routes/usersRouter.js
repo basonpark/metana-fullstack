@@ -1,9 +1,12 @@
 import express from 'express';
 import User from '../models/User.js';
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+
 
 const usersRouter = express.Router();
 
+const SALT_ROUNDS = 10;
 // Get all users
 usersRouter.get('/', async (req, res) => {
   try {
@@ -31,8 +34,15 @@ usersRouter.get('/:id', async (req, res) => {
 // Post new user
 usersRouter.post('/', async (req, res) => {
   try {
-    const { name, email, role } = req.body;
-    const newUser = new User({ name, email, role });
+    const { name, email, role, password } = req.body;
+
+    if (!name || !email || !role || !password) {
+        throw new Error('all fields are required');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
+    const newUser = new User({ name, email, role, hashedPassword });
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
@@ -44,10 +54,25 @@ usersRouter.post('/', async (req, res) => {
 usersRouter.put('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, role } = req.body;
+    const { name, email, role, password } = req.body;
+
+    if (!name || !email || !role || !password) {
+        throw new Error('all fields are required');
+    }
+
+    //validate current user has rights to update this user
+    if (role) {
+      const prevUser = User.findOne({email: email});
+      if (prevUser && prevUser.role !== role) {
+        console.log('=== user has no rights to update this user');
+      }
+    }
+
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
     const updatedUser = await User.findByIdAndUpdate(
       id,
-      { name, email, role },
+      { name, email, role, hashedPassword },
       { new: true }
     );
     if (!updatedUser) {

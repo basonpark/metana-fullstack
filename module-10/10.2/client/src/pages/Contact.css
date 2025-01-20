@@ -1,0 +1,15 @@
+/* Styles for the Contact page */
+
+.contact-methods {
+  padding: 2rem;
+}
+.contact-method-item a,
+.contact-method-item a:visited,
+.contact-method-item a:active,
+.contact-method-item a:hover {
+  color: var(--link-color);
+}
+
+.margin-top-30 {
+  margin-top: 5rem;
+}

@@ -1,0 +1,20 @@
+#navigation {
+  top: 0;
+  height: 42px;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-item {
+  margin: 0 8px;
+  padding: 10px 20px;
+  color: #11c453;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: #11c453 1px solid;
+}
+.nav-item:hover {
+  background-color: #11c453;
+  color: white;
+}

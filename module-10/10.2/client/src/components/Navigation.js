@@ -50,7 +50,7 @@ function Navigation() {
         </NavItemPlain>
       ) : (
         <NavItemPlain to="/login">
-          Login
+          Log in
         </NavItemPlain>
       )}
     </nav>

@@ -20,7 +20,7 @@ function ExamplePrivatePage() {
   useEffect(() => {
     const getData = async () => {
       const result = await protectedAPI.privateApiExample(token);
-      console.log('=== debug: private API response: ' + JSON.stringify(result)); // delete this from your code
+      console.log('=== debug: private API response: ' + JSON.stringify(result)); 
       if (result.status === 200) {
         setPrivateData(JSON.stringify(result?.data));
       } else {
@@ -28,7 +28,7 @@ function ExamplePrivatePage() {
       }
     };
     getData();
-  }, [user, token]); // This will get triggered whenever the value of 'user' or 'token' changes.
+  }, [user, token]); //triggered whenever the value of 'user' or 'token' changes.
 
   return (
     <div className="mx-20">
